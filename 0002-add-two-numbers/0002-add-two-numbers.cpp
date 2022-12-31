@@ -41,16 +41,8 @@ public:
         while (a.size())
         {
             int t = a.back() - '0' + b.back() - '0' + rem;
-            if ( t > 9 )
-            {
-                sum.push_front( t % 10 );
-                rem = 1;
-            } 
-            else 
-            {
-                 sum.push_front( t % 10 );
-                 rem = 0;
-            }
+            sum.push_front( t % 10 );
+            rem =  ( t > 9 ) ? 1 : 0;
             a.pop_back() , b.pop_back();
         }
         
