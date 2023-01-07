@@ -21,12 +21,9 @@ public:
             ans |= solve (i + 1 , j + 1 , s , t);
         
         else 
-        {
             ans |= solve (i , j + 1 , s , t);
-        }
-        
-        return ans;
-        
+
+        return ans;     
     }
     bool isSubsequence(string s, string t) {
         memset (dp , -1 , sizeof dp);
