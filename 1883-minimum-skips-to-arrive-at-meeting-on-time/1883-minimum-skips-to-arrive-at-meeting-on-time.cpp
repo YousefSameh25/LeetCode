@@ -8,7 +8,7 @@ public:
 
         double &ret = dp[i][skips];
 
-        if (dp[i][skips] > 1e-9)
+        if (dp[i][skips] != 0)
             return ret;
 
         double time = (double) dist[i] / s;
@@ -19,9 +19,15 @@ public:
 
         return ret;
     }
+    
     int minSkips(vector<int>& dist, int speed, int hoursBefore) {
         s = speed;
-        memset (dp , 0 , sizeof dp);
+        
+        
+        for (int i = 0 ; i < dist.size() ; i++)
+            for (int j = 0 ; j < dist.size() ; j++)
+                dp[i][j] = 0;
+        
         int l = 0 , r = dist.size() - 1 , ans = -1;
         while( l <= r )
         {
