@@ -2,13 +2,6 @@ class Solution {
 public:
     double dp[1001][1001];
     int vis[1001][1001] , s;
-    int ceiling(double a)
-    {
-	int ret=a;
-	if(ret==a)
-		return ret;
-	else return ret+1;
-    }
     double solve(int i, int skips, vector<int> &dist) {
         if (i < 0)
             return 0;
@@ -19,7 +12,7 @@ public:
             return ret;
 
         double time = (double) dist[i] / s;
-        ret = (int) ceiling ((double)solve(i - 1, skips, dist) + time);
+        ret = ceil ((double)solve(i - 1, skips, dist) + time);
         if (skips)
             ret = min(ret, solve(i - 1, skips - 1, dist) + time - (1e-8));
 
