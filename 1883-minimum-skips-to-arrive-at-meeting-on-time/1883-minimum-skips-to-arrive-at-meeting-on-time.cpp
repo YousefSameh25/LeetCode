@@ -1,34 +1,27 @@
 class Solution {
 public:
     double dp[1001][1001];
-    int vis[1001][1001] , s;
+    int s;
     double solve(int i, int skips, vector<int> &dist) {
         if (i < 0)
             return 0;
 
         double &ret = dp[i][skips];
 
-        if (dp[i][skips] != 0)
+        if (dp[i][skips] > 1e-9)
             return ret;
 
         double time = (double) dist[i] / s;
         ret = ceil ((double)solve(i - 1, skips, dist) + time);
         if (skips)
-            ret = min(ret, solve(i - 1, skips - 1, dist) + time - (1e-8));
+            ret = min(ret, solve(i - 1, skips - 1, dist) + time - 1e-9);
 
-        vis[i][skips] = 1;
+
         return ret;
     }
     int minSkips(vector<int>& dist, int speed, int hoursBefore) {
         s = speed;
         memset (dp , 0 , sizeof dp);
-        memset (vis , 0 , sizeof vis);
-        
-        //  for (int sk = 0; sk < dist.size(); sk++)
-        // if (solve(dist.size() - 1, sk, dist) <= 1.0 * hoursBefore) {
-        //     return sk;
-        // }
-        // return -1;
         int l = 0 , r = dist.size() - 1 , ans = -1;
         while( l <= r )
         {
