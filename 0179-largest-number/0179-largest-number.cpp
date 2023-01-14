@@ -1,9 +1,5 @@
 class Solution {
 public:
-    bool fun (string & a , string & b)
-    {
-        return (a + b > b + a);
-    }
     string largestNumber(vector<int>& nums)
     {
         vector < string > v;
