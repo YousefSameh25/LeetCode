@@ -16,7 +16,7 @@ public:
         deque < int > vls;
         vector <TreeNode*> nodes;
         //Get Level
-        map <TreeNode* , int> lvl;
+        unordered_map <TreeNode* , int> lvl;
         lvl[root] = 0;
         queue < TreeNode* > q;
         q.push(root);
