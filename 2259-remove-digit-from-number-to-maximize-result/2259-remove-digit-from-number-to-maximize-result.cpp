@@ -2,27 +2,17 @@ class Solution {
 public:
     string removeDigit(string number, char digit) 
     {
-        vector < int > v;
-        for (int i = 0 ;  i < number.size() ; i++)
+        int idx = 0;
+        for (int i = 0 ; i < number.size() ; i++)
         {
             if (number[i] == digit)
-                v.push_back(i);
-        }
-        string mx;
-        for (auto it : v)
-        {
-            string t;
-            for (int i = 0 ; i < number.size() ; i++)
             {
-                if (it == i)
-                    continue;
-                t.push_back(number[i]);
+                idx = i;
+                if (i + 1 < number.size() and number[i] < number[i + 1])
+                    break;
             }
-            if (mx.size())
-                 mx = max(mx , t);
-            else 
-                mx = t;
         }
-        return mx;
+        number.erase(idx , 1);
+        return number;
     }
 };
