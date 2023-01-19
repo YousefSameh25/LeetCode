@@ -5,16 +5,18 @@ public:
         int sum = accumulate (arr.begin() , arr.end() , 0);
         if (sum % 3 != 0)
             return false;
-        int ret = 0 , s = 0 ,p = 0;
-        for (auto it : arr)
+        int s = 0 , p = 0;
+        auto i = arr.begin();
+        while(i != arr.end() and p < 2)
         {
-            s += it;
+            s += *i;
+            i++;
             if (s == sum / 3)
-            {
-                s = 0;
-                p++;
-            }
+               p++ , s = 0;
         }
-        return p >= 3;
+        if(i == arr.end())
+            return false;
+        p +=  accumulate(i , arr.end() , 0) == sum / 3;
+        return p == 3;
     }
 };
