@@ -11,8 +11,8 @@ public:
             int mid = (1LL * s + e) >> 1;
             if (isBadVersion(mid))
             {
-                  e = mid - 1;
-                  ans = mid;
+                e = mid - 1;
+                ans = mid;
             }
             else 
             {
