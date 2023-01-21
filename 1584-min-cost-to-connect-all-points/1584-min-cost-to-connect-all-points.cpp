@@ -36,7 +36,7 @@ public:
     }
     int minCostConnectPoints(vector<vector<int>>& points) {
         int idx = 0;
-       vector<pair<int,pair<int,int>>> adj;
+        vector<pair<int,pair<int,int>>> adj;
         for(int i = 0 ; i < points.size(); i++)
         {
              for(int j = i+1 ; j < points.size(); j++)
@@ -44,8 +44,8 @@ public:
                  if(i == j)
                      continue;
                  int x1 = points[i][0], y1= points[i][1];
-                int x2 = points[j][0], y2 =  points[j][1];
-              adj.push_back({dist(x1 ,x2,y1,y2) , {i ,j}});
+                 int x2 = points[j][0], y2 =  points[j][1];
+                 adj.push_back({dist(x1 ,x2,y1,y2) , {i ,j}});
              }
         }
 
