@@ -46,7 +46,7 @@ public:
                      continue;
                  int x1 = points[i][0], y1= points[i][1];
                  int x2 = points[j][0], y2 =  points[j][1];
-                 adj.push_back({dist(x1 ,x2,y1,y2) , {i ,j}});
+                 adj.push_back({dist(x1 ,x2,y1,y2) , {i , j}});
              }
         }
 
