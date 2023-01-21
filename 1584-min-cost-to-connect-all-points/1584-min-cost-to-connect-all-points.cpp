@@ -1,42 +1,43 @@
 class Solution {
 public:
-    struct DSU {
-    vector<int> parent, size;
+        struct DSU {
+        vector<int> parent, size;
 
-    DSU(int n) {
-        parent.resize(n + 1);
-        size.resize(n + 1);
-        for (int i = 0; i <= n; i++) {
-            parent[i] = i;
-            size[i] = 1;
+        DSU(int n) {
+            parent.resize(n + 1);
+            size.resize(n + 1);
+            for (int i = 0; i <= n; i++) {
+                parent[i] = i;
+                size[i] = 1;
+            }
         }
-    }
 
-    int find_parent(int u) {
-        if (u == parent[u])
-            return u;
-        return parent[u] = find_parent(parent[u]);
-    }
+        int find_parent(int u) {
+            if (u == parent[u])
+                return u;
+            return parent[u] = find_parent(parent[u]);
+        }
 
-    bool connect(int u, int v) {
-        u = find_parent(u), v = find_parent(v);
-        if (u == v)
-            return 0;
-        if (size[u] < size[v])
-            swap(u, v);
-        parent[v] = u;
-        size[u] += size[v];
-        return 1;
-    }
-};
+        bool connect(int u, int v) {
+            u = find_parent(u), v = find_parent(v);
+            if (u == v)
+                return 0;
+            if (size[u] < size[v])
+                swap(u, v);
+            parent[v] = u;
+            size[u] += size[v];
+            return 1;
+        }
+    };
 
     int dist(int x1 , int x2 , int y1 , int y2)
     {
         return abs (x1 - x2 ) + abs(y1 - y2);
     }
+    
     int minCostConnectPoints(vector<vector<int>>& points) {
         int idx = 0;
-        vector<pair<int,pair<int,int>>> adj;
+       vector<pair<int,pair<int,int>>> adj;
         for(int i = 0 ; i < points.size(); i++)
         {
              for(int j = i+1 ; j < points.size(); j++)
