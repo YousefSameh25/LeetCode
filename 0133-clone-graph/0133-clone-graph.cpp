@@ -39,7 +39,7 @@ public:
             return NULL;
         dfs(node);
         map <int , Node*> mp;
-        for (int i = 0 ; i <= 109 ; i++)
+        for (int i = 1 ; i <= 100 ; i++)
         {
             if (vis[i] == 0)
                 continue;
