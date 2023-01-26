@@ -10,6 +10,8 @@ public:
         {
             int t = q.front();
             q.pop();
+            if (lvl[t] > level)
+                break;
             for (auto child : friends[t])
             {
                 if (vis[child])
