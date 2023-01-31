@@ -23,6 +23,7 @@ public:
         for (auto& it : richer)
             g[it[1]].push_back(it[0]);
         
+        // Mapping the value to the node
         map <int , int> mp;
         for (int i = 0 ; i < quiet.size() ; i++)
             mp[quiet[i]] = i;
@@ -30,6 +31,7 @@ public:
         memset (dp_mn , -1 , sizeof dp_mn);
         vector <int> ret (quiet.size());
         for (int i = 0 ; i < quiet.size() ; i++)  {
+            // Get the node with this value
             ret[i] = mp[dfs (i , quiet)];
         }
         return ret;
