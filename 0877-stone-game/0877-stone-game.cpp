@@ -11,10 +11,9 @@ public:
         
         if (~ret)
             return ret;
-        
-        
+             
         int op1 = solve (l + 1 , r , p ^ 1 , piles) + (!p)? piles[l] : - piles[l];
-        int op2 = solve (l  , r - 1 , p ^ 1 , piles) + (!p)? piles[l] : - piles[l];
+        int op2 = solve (l  , r - 1 , p ^ 1 , piles) + (!p)? piles[r] : - piles[r];
         
         ret = (op1 > 0 or op2 > 0);
         
