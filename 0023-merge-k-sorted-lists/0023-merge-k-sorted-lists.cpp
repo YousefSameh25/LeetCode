@@ -14,13 +14,11 @@ public:
     {
         
         vector < int > v;
-        vector < ListNode* > ls;
         for (auto it : lists)
         {
             ListNode* s = it;
             while (s != nullptr)
             {
-                ls.push_back(new ListNode());
                 v.push_back(s -> val);
                 s = s -> next; 
             }
@@ -30,15 +28,16 @@ public:
         
         sort (v.begin() , v.end());
         
+        ListNode* head = new ListNode(v[0]);
+        ListNode* temp = head;
         
-        for (int i = 0 ; i < ls.size() - 1 ; i++)
+        for( int i = 1 ; i < v.size() ; i++ )
         {
-             ls[i] -> val = v[i];
-             ls[i] -> next = ls[i + 1];
+            ListNode* num = new ListNode(v[i]);
+            temp -> next = num;
+            temp = temp -> next;
         }
-        
-        ls.back() -> val = v.back();
          
-        return ls[0];
+        return head;
     }
 };
