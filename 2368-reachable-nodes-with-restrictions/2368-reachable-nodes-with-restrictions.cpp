@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector <int> g[100000 + 10];
-    set < int > bad;
+    unordered_set < int > bad;
     int dfs (int node , int p)
     {
         int ret = 1;
