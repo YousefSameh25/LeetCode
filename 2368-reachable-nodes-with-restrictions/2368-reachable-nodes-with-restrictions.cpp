@@ -1,27 +1,27 @@
 class Solution {
 public:
     vector <int> g[100000 + 10];
-    unordered_set < int > bad;
+    bool bad[100000 + 10];
     int dfs (int node , int p)
     {
         int ret = 1;
         for (auto &ch : g[node])
         {
-            if (ch == p or bad.count(ch))
+            if (ch == p or bad[ch])
                 continue;
             ret += dfs (ch , node);
         }
         return ret;
     }
-    int reachableNodes(int n, vector<vector<int>>& edges, vector<int>& restricted) 
-    {    
+    int reachableNodes(int n, vector<vector<int>>& edges, vector<int>& restricted) {
+        
         for (auto it : edges)
         {
             g[it[0]].push_back(it[1]);
             g[it[1]].push_back(it[0]);
         }
         for (auto it : restricted)
-            bad.insert(it);
+            bad[it] = 1;
         
         return dfs (0 , 0);
     }
