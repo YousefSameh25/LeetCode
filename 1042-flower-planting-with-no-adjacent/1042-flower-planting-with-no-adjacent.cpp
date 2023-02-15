@@ -4,7 +4,8 @@ public:
     vector <int> g[2 * 10000 + 10];
     void dfs (int node)
     {
-        vector < int > valid (5 , 1); 
+        bitset < 5 > valid;
+        valid.set();
 
         for (auto child : g[node])
             valid[col[child]] = 0;
