@@ -4,11 +4,19 @@ public:
     vector <int> g[2 * 10000 + 10];
     void dfs (int node)
     {
-        vector < int > tmp = {1 , 2 , 3 , 4}; 
-        set < int > st (tmp.begin() , tmp.end());
+        vector < int > valid (5 , 1); 
+
         for (auto child : g[node])
-            st.erase(col[child]);
-        col[node] = *st.begin();
+            valid[col[child]] = 0;
+        
+        for (int i = 1 ; i <= 4 ; i++)
+        {
+            if (not valid[i])
+                continue;
+            col[node] = i;
+            break;
+        }
+
         for (auto ch : g[node])
         {
             if (col[ch])
