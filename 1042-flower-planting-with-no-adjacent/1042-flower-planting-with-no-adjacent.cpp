@@ -2,11 +2,10 @@ class Solution {
 public:
     int col[2 * 10000 + 10];
     vector <int> g[2 * 10000 + 10];
+    bitset < 5 > valid;
     void dfs (int node)
     {
-        bitset < 5 > valid;
         valid.set();
-
         for (auto child : g[node])
             valid[col[child]] = 0;
         
