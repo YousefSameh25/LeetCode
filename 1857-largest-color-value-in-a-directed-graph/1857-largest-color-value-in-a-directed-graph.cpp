@@ -4,7 +4,7 @@ public:
     int vis[100000 + 10] , cy = 0;
     vector < int > g[100000 + 10];
     string color;
-    unordered_map <int , vector <int>> dp;
+    vector <int> dp[100000 + 10];
     void dfs (int node)
     {
         vis[node] = 1;
@@ -21,22 +21,21 @@ public:
     
     vector <int> solve (int node)
     {
-      if (dp.count(node))
+      if (dp[node].size())
           return dp[node];
       
-        vector < int > tmp (26 , 0);       
+        dp[node].resize(26 , 0);    
         
         for (auto ch : g[node])
         {
             vector <int> t = solve (ch);
             for (int i = 0 ; i < 26 ; i++)
-                tmp[i] = max(tmp[i] , t[i]);
+                dp[node][i] = max(dp[node][i] , t[i]);
         }
         
-        tmp [color[node] - 'a']++;
+        dp[node][color[node] - 'a']++;
           
-        
-        return dp[node] = tmp;
+        return dp[node];
     }
     
     
@@ -47,15 +46,14 @@ public:
         for (auto it : edges)
             g[it[0]].push_back(it[1]);
         
-        for (int i = 0 ; i< colors.size() ; i++)   
+        for (int i = 0 ; i < colors.size() ; i++)   
         {
             dfs (i);
             if (cy)
                 return -1;
         }
-
         
-        color = colors;
+         color = colors;
              
          int mx = 0;
          for (int i = 0 ; i < colors.size() ; i++)
