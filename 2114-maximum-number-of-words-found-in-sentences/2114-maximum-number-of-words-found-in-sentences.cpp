@@ -2,7 +2,7 @@ class Solution {
 public:
     int mostWordsFound(vector<string>& sentences) 
     {
-       map <string , int> mp;
+       unordered_map <string , int> mp;
        int mx = 0;
        for (auto &it : sentences)
        {
