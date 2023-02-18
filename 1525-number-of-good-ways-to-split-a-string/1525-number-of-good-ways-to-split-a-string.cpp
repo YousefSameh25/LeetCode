@@ -1,18 +1,21 @@
 class Solution {
 public:
     int numSplits(string s) {
-        set <char> st;
-        vector <int> pre(s.size() , 0) , suf(s.size() , 0);
-        for (int i = 0 ;i < s.size() ; i++)
+        vector <int> pre(s.size() , 0) , suf(s.size() , 0) , frq(26 , 0);
+        int distinct = 0;
+        for (int i = 0 ; i < s.size() ; i++)
         {
-            st.insert(s[i]);
-            pre[i] = st.size();
+            frq[s[i] - 'a']++;
+            distinct += (frq[s[i] - 'a'] == 1);
+            pre[i] = distinct;
         }
-        st.clear();
+        fill(frq.begin() , frq.end() , 0);
+        distinct = 0;
         for (int i = s.size() - 1 ; i >= 0 ; i--)
         {
-            st.insert(s[i]);
-            suf[i] = st.size();
+            frq[s[i] - 'a']++;
+            distinct += (frq[s[i] - 'a'] == 1);
+            suf[i] = distinct;
         }
         int ret = 0;
         for (int i = 0 ; i < s.size() - 1 ; i++)
