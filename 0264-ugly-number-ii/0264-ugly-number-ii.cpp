@@ -1,7 +1,7 @@
 class Solution {
 public:
     set <long long> st;
-    unordered_map <long long , bool> dp;
+    map <long long , bool> dp;
     void pre (long long num)
     {
         if (num >= 1e10)
