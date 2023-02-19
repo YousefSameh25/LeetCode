@@ -8,6 +8,8 @@ public:
             return;
         if (dp.count(num))
             return;
+        if (v.size() == 1670)
+            return;
 
         pre(num * 2);
         pre(num * 3);
