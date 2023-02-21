@@ -19,7 +19,7 @@ public:
                         m += items[i];
                 }
             }
-            if(h<= 11 and m <= 59)
+            if(h <= 11 and m <= 59)
             {
                 string tmp = to_string(h);
                 string tmp2 = to_string(m);
