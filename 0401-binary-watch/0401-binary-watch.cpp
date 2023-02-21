@@ -4,7 +4,7 @@ public:
         int items[] = {1 ,2 , 4 ,8 , 1 , 2 ,4 ,8 ,16 ,32};
         bool hours[] = {1 , 1 , 1, 1, 0 , 0, 0, 0, 0, 0};
         vector<string> res;
-        for(int msk = 0 ; msk < (1<< 10); msk++ )
+        for(int msk = 0 ; msk < (1 << 10); msk++ )
         {
             if(__builtin_popcount(msk) != turnedOn)
                 continue;
@@ -27,8 +27,6 @@ public:
                     tmp2= "0" + tmp2;
                 res.push_back(tmp + ":" + tmp2);
             }
-
-
         }
         return res;
     }
