@@ -2,7 +2,7 @@ class Solution {
 public:
     bool checkPowersOfThree(int n) {
         int t = pow(3 , 15);
-        while(t >= 1)
+        while(t)
         {
             if (t <= n)
                 n -= t;
