@@ -18,7 +18,7 @@ public:
             head = head -> next;
         }
         int s = 0 , e = v.size() - 1;
-        while(s <= e)
+        while(s < e)
         {
             if (v[s] == v[e])
                 s++ , e--;
