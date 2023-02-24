@@ -16,7 +16,7 @@ public:
     {
         if (st.size() == 0)
             return v;
-        auto val = *st.lower_bound(1);
+        auto val = *st.begin();
         return val == 1? 0 : val - 1;
     }
 };
