@@ -11,7 +11,7 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector <int> v;
+        vector <short> v;
         while(head != NULL)
         {
             v.push_back(head->val);
