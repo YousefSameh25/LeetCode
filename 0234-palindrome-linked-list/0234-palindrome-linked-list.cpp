@@ -14,7 +14,7 @@ public:
         string v;
         while(head != NULL)
         {
-            v.push_back(head->val);
+            v.push_back(head->val + '0');
             head = head -> next;
         }
         int s = 0 , e = v.size() - 1;
