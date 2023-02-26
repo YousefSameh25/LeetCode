@@ -63,8 +63,6 @@ public:
                  dsu.connect(node , ch);
             }
         }
-
-        //cout << dsu.size[dsu.find_parent(10)];
         
         int mx = 0;
         for (int node = 0 ; node < n * n ; node++)
