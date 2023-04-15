@@ -9,12 +9,12 @@ public:
     {
           
         for (auto &it : intervals)
-            it[1] *= -1;
+            it[0] *= -1;
 
-        sort(intervals.begin() , intervals.end());
+        sort(intervals.begin() , intervals.end() , greater<>());
         
          for (auto &it : intervals)
-            it[1] *= -1;
+            it[0] *= -1;
         
         int ans = 1;
         vector <int> cur = intervals[0];
