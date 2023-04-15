@@ -7,26 +7,14 @@ public:
     
     int removeCoveredIntervals(vector<vector<int>>& intervals) 
     {
-        sort(intervals.begin() , intervals.end());
-        
-        
-        priority_queue < vector <int> > pq;
-        
-        for (auto it : intervals)
-        {
+          
+        for (auto &it : intervals)
             it[0] *= -1;
-            pq.push(it);
-        }
+
+        sort(intervals.begin() , intervals.end() , greater<>());
         
-        intervals.clear();
-        
-        while (pq.size())
-        {
-            intervals.push_back(pq.top());
-            intervals.back()[0] *= -1;
-            pq.pop();   
-        }
-        
+         for (auto &it : intervals)
+            it[0] *= -1;
         
         int ans = 1;
         vector <int> cur = intervals[0];
