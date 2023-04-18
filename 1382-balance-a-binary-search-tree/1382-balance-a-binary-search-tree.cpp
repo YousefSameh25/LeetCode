@@ -25,15 +25,22 @@ public:
         // Solve every sub problem
         int mid = (l + r) >> 1;
         node -> val = v[mid];
-        if (mid - 1 >= l)
+        
+        if (r - l == 0)
         {
-            node -> left = new TreeNode(); 
-            solve (v , l , mid - 1 , node -> left);
+            return;
         }
-        if (r >= mid + 1)
+        else if (r - l  == 1)
         {
             node -> right = new TreeNode(); 
             solve (v , mid + 1 , r , node -> right);
+        }
+        else 
+        {
+             node -> right = new TreeNode(); 
+             solve (v , mid + 1 , r , node -> right);
+             node -> left = new TreeNode(); 
+             solve (v , l , mid - 1 , node -> left);
         }
     }
     
