@@ -119,14 +119,10 @@ public:
             for (int k = 0; k < 4; k++) {
                 int cx = pos[0] + dix[k], cy = pos[1] + diy[k];
                 if (valid(cx, cy, n, m) and grid[cx][cy] == 0) {
-                    cout << cx << " " << cy;
                     return false;
                 }
-
             }
         }
-
         return true;
-
     }
 };
