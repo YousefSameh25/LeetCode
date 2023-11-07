@@ -8,7 +8,7 @@ public:
         map < char , int > mp;
         st.insert(s[0]), st.insert(s[1]) , st.insert(s[2]);
         mp[s[0]]++, mp[s[1]]++, mp[s[2]]++;
-        int ans = st.size() == 3 and mp.size() == 3;
+        int ans = st.size() == 3;
         for ( int i = 0 ; i + 3 < s.size() ; i++)
         {
             mp[s[i]]--;
