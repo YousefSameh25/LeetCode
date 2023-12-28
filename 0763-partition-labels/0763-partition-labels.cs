@@ -18,7 +18,7 @@ public class Solution {
                 r[s[i] - 'a'] = i;
         }
 
-        IList<int> ans = new List<int>();
+        List<int> ans = new List<int>();
 
         int x = l[s[0] - 'a'], y = r[s[0] - 'a'];
 
