@@ -1,7 +1,8 @@
 class Solution {
 public:
     
-    bool canJump(vector<int>& nums) {
+    bool canJump(vector<int>& nums) 
+    {
         int curidx = nums.size() - 1;
         int pre = curidx - 1;
         int len = 1;
