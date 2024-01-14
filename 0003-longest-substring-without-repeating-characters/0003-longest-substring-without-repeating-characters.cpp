@@ -7,7 +7,7 @@ public:
         while (r < s.size())
         {
             if (mp[s[r]] == 0)
-                mp[s[r]] = 1 , r++ , ans = max(ans , r - l);
+                mp[s[r]] = 1 , ans = max(ans , r - l + 1) , r++;
             else 
             {
                 while (mp[s[r]])
@@ -16,7 +16,6 @@ public:
                     l++;
                 }
             }
-            //cout << l << " " << r << endl;
         }
         return ans;
     }
