@@ -59,7 +59,7 @@ public:
         but the cost of the steps are not the same. 
         */
   
-        map < int , long long > mp; 
+        unordered_map < int , long long > mp; 
         
         int R = -1;
         for (int i = 0 ; i < nums.size() ; i++)
