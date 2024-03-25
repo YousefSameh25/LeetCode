@@ -59,36 +59,39 @@ public:
         but the cost of the steps are not the same. 
         */
   
-        unordered_map < int , long long > mp; 
+        vector <pair <int , long long>> Nums;
         
-        int R = -1;
         for (int i = 0 ; i < nums.size() ; i++)
-            mp[nums[i]] += cost[i] , R = max(R , nums[i]);
+             Nums.emplace_back(nums[i] , cost[i]);
         
-        vector < long long > NumbersLinePre(R + 10 , 0) , NumbersLineSuf(R + 10 , 0);
+        sort(Nums.begin() , Nums.end());
+        
+        vector < long long > NumbersLinePre(nums.size() + 10 , 0) , NumbersLineSuf(nums.size() + 10 , 0);
         
         long long sum = 0 , preCosts = 0;
-        for (int i = 0 ; i <= R ; i++)
+        for (int i = 0 ; i < Nums.size() ; i++)
         {
+            sum += preCosts * (i != 0? (Nums[i].first - Nums[i - 1].first) : 1);
+            
             NumbersLinePre[i] = sum;
-            if (mp.count(i))
-                preCosts += mp[i];
-            sum += preCosts;
+
+            preCosts += Nums[i].second;
         }
         
         
         sum = 0 , preCosts = 0;
-        for (int i = R ; i >= 0 ; i--)
+        for (int i = Nums.size() - 1 ; i >= 0 ; i--)
         {
+            sum += preCosts * (i != Nums.size() - 1? (Nums[i + 1].first - Nums[i].first) : 1);
+            
             NumbersLineSuf[i] = sum;
-            if (mp.count(i))
-                preCosts += mp[i];
-            sum += preCosts;
+            
+            preCosts += Nums[i].second;
         }
         
         long long ans = 1e18;
         
-        for (int i = 0 ; i <= R ; i++)
+        for (int i = 0 ; i < Nums.size() ; i++)
             ans = min(ans , NumbersLineSuf[i] + NumbersLinePre[i]);
         
         return ans;
