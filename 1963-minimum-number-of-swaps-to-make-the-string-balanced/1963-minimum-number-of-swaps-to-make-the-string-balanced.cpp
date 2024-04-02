@@ -29,13 +29,6 @@ public:
                 {
                     if (st.top() == '[')
                         st.pop();
-                    else 
-                    {
-                        swap(s[i], s[mp['['- '['].back()]);
-                        mp['['- '['].pop_back();
-                        st.push(s[i]);
-                        ans++;
-                    }
                 }
                 else
                 {
