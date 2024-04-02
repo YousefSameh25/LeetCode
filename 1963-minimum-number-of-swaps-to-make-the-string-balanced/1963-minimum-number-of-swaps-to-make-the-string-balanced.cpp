@@ -1,11 +1,10 @@
 class Solution {
 public:
     int minSwaps(string s) {
-        map < char , vector < int >> mp;
+        vector<int> mp[3];
         
         for (int i = 0 ; i < s.size(); i++)
-            mp[s[i]].push_back(i);
-        
+            mp[s[i] - '['].push_back(i);
         
         stack < char > st;
         
@@ -18,8 +17,8 @@ public:
                     st.push(s[i]);
                 else 
                 {
-                    swap(s[i], s[mp['['].back()]);
-                    mp['['].pop_back();
+                    swap(s[i], s[mp['['- '['].back()]);
+                    mp['['- '['].pop_back();
                     st.push(s[i]);
                     ans++;
                 }
@@ -32,8 +31,8 @@ public:
                         st.pop();
                     else 
                     {
-                        swap(s[i], s[mp['['].back()]);
-                        mp['['].pop_back();
+                        swap(s[i], s[mp['['- '['].back()]);
+                        mp['['- '['].pop_back();
                         st.push(s[i]);
                         ans++;
                     }
