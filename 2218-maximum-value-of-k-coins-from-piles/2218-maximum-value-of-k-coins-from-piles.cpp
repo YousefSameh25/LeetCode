@@ -1,5 +1,12 @@
 class Solution {
 public:
+    /*
+    - i -> means I have moved i distance from the begin.
+    - r -> means I have a reminder r after my travel.
+    When I draw the tree I found that there is an overlap with the state (i, r).
+    */
+    
+    
     int dp[1001][2001];
     int Solve(int i, int r, vector<vector<int>>& piles)
     {
