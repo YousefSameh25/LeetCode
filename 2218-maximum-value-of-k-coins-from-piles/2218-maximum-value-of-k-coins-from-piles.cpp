@@ -6,8 +6,7 @@ public:
     When I draw the tree I found that there is an overlap with the state (i, r).
     */
     
-    
-    int dp[1001][2001];
+    vector<vector<int>> dp;
     int Solve(int i, int r, vector<vector<int>>& piles)
     {
         if (i == piles.size() or !r)
@@ -28,9 +27,10 @@ public:
     
     int maxValueOfCoins(vector<vector<int>>& piles, int k) 
     {
-        memset(dp, -1, sizeof dp);
+
         int n = piles.size();
-        
+        dp.resize(n, vector <int>(k + 1, -1));
+            
         for (int i = 0 ; i < n ; i++)
             for (int j = 1 ; j < piles[i].size(); j++)
                 piles[i][j] += piles[i][j - 1];
