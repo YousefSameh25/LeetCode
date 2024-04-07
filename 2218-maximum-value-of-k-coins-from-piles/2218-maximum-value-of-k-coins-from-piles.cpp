@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
+    int dp[1001][2001];
     int Solve(int i, int r, vector<vector<int>>& piles)
     {
         if (i == piles.size() or !r)
@@ -21,8 +21,8 @@ public:
     
     int maxValueOfCoins(vector<vector<int>>& piles, int k) 
     {
+        memset(dp, -1, sizeof dp);
         int n = piles.size();
-        dp.resize(n, vector< int > (k + 1, -1));
         
         for (int i = 0 ; i < n ; i++)
             for (int j = 1 ; j < piles[i].size(); j++)
