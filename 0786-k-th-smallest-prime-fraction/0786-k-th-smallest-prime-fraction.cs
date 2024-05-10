@@ -16,7 +16,8 @@ public class Solution {
                 dic.Add(1.0 * arr[i] / arr[j], new KeyValuePair<int, int>(arr[i], arr[j]));
             }
         }
-        list.Sort();
+        list = list.OrderBy(r => r).ToList();
+        
         
         int[] ans = new int[2] {dic[list[k - 1]].Key, dic[list[k - 1]].Value};
         return ans;
