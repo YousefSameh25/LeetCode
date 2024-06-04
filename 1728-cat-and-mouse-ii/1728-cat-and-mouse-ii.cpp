@@ -27,9 +27,11 @@ public:
         if (~dp[t][cx][cy][mx][my])
             return dp[t][cx][cy][mx][my];
         
+        int cur;
         
         if (t % 2 == 0)
         {
+            cur = 0;
             for (int d = 0 ; d < 4 ; d++)
             {
                 for (int i = 0 ; i <= Mmax; i++)
@@ -37,18 +39,18 @@ public:
                     if (validCell(mx + (dir[d] * i), my + (dir[d + 1] * i)))
                     {
                         if (Grid[mx + (dir[d] * i)][my + (dir[d + 1] * i)] == 'F')
-                            return dp[t][cx][cy][mx][my] = 1;
-                        if (solve(t + 1, cx, cy, mx + (dir[d] * i), my + (dir[d + 1] * i)))
-                            return dp[t][cx][cy][mx][my] = 1;
+                            cur |= 1;
+                        else 
+                            cur |= solve(t + 1, cx, cy, mx + (dir[d] * i), my + (dir[d + 1] * i));
                     }
                     else 
                         break;
                 }
             }
-            return dp[t][cx][cy][mx][my] = 0;
         }
         else 
         {
+            cur = 1;
             for (int d = 0 ; d < 4 ; d++)
             {
                 for (int i = 0 ; i <= Cmax; i++)
@@ -56,22 +58,20 @@ public:
                     if (validCell(cx + (dir[d] * i), cy + (dir[d + 1] * i)))
                     {
                         if (Grid[cx + (dir[d] * i)][cy + (dir[d + 1] * i)] == 'F')
-                            return dp[t][cx][cy][mx][my] = 0;
+                            cur &= 0;
                         
                         else if (cx + (dir[d] * i) == mx and cy + (dir[d + 1] * i) == my)
-                            return dp[t][cx][cy][mx][my] = 0;
+                            cur &= 0;
                         
-                        else if (!solve(t + 1, cx + (dir[d] * i), cy + (dir[d + 1] * i), mx , my))
-                            return dp[t][cx][cy][mx][my] = 0;
-                           
+                        else
+                            cur &= solve(t + 1, cx + (dir[d] * i), cy + (dir[d + 1] * i), mx , my);
                     }
                     else 
                         break;
                 }
             }
-            return dp[t][cx][cy][mx][my] = 1;
         }
-        return 0;
+        return dp[t][cx][cy][mx][my] = cur;
     }
     
     
