@@ -16,9 +16,7 @@ public:
                     ans = mid;
                 }
                 else 
-                {
                     r = mid - 1;
-                }
             }
             if (ans != -1)
                 mx = max(mx , ans - i);
