@@ -1,10 +1,10 @@
 class Solution {
 public:
     int equalPairs(vector<vector<int>>& grid) {
-        map <vector <int> , int> mpR;
-        
+
         int n = grid.size(), m = grid.back().size();
         
+        map <vector <int> , int> mpR;
         for (int i = 0 ;  i < n ; i++)
         {
             vector <int> temp;
@@ -14,7 +14,6 @@ public:
         }
         
         map <vector <int> , int> mpC;
-        
         for (int j = 0 ;  j < m ; j++)
         {
             vector <int> temp;
