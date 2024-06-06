@@ -19,7 +19,6 @@ public:
         }
         
         vector < double > dist(n, 0);
-        vector < int > vis(n , 0);
         
         priority_queue < pair <double , int>> pq;
         
@@ -34,13 +33,9 @@ public:
             int node = top.second;
             double dis = top.first;
             
-            vis[node] = 1;
             
             for (auto child : G[node])
             {
-                if (vis[child.first])
-                    continue;
-                
                 if (dist[child.first] < dis * child.second)
                 {
                     dist[child.first] = dis * child.second;
