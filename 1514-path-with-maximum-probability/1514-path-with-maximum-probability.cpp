@@ -1,38 +1,54 @@
 class Solution {
 public:
-    
-    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
-        vector<pair<int,double>> graph[n];  // node(u)--> {node(v),prob};
-        for(int i=0;i<edges.size();i++){
-            graph[edges[i][0]].push_back({edges[i][1],succProb[i]});
-            graph[edges[i][1]].push_back({edges[i][0],succProb[i]});
+    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, 
+                          int start_node, int end_node) 
+    {
+        /*
+            we can construct maximum spanning tree then dfs from s -> e.
+            it is wrong X.
+            
+            Use dij but we can convert success prop.
+        */
+        
+        vector < pair <int, double> > G[n];
+        
+        for (int i = 0 ;  i < edges.size(); i++)   
+        {
+            G[edges[i][0]].push_back({edges[i][1], succProb[i]});
+            G[edges[i][1]].push_back({edges[i][0], succProb[i]});
         }
- 
-           vector<int> vis(n,0);
-          priority_queue<pair<double,int>> pq;
-          vector<double> dist(n,0);
-          pq.push({1.00,start});
-
-           while(!pq.empty()){
-               auto top=pq.top();
-               pq.pop();
-               int node=top.second;
-               double currdist=top.first;
-                vis[node]=1;
-               for(auto x:graph[node]){
-                   int child= x.first;
-                   double pathprob=x.second;
-
-                   if(vis[child]==0){
-                        if(currdist*pathprob>dist[child]){
-                            dist[child]= currdist*pathprob;
-                            pq.push({dist[child],child});
-                        }
-                   }
-               }
-
-           }
-           return dist[end];
-
+        
+        vector < double > dist(n, 0);
+        vector < int > vis(n , 0);
+        
+        priority_queue < pair <double , int>> pq;
+        
+        dist[start_node] = 1.0;
+        pq.push({1.00, start_node});
+        
+        while(pq.size())
+        {
+            auto top = pq.top();
+            pq.pop();
+            
+            int node = top.second;
+            double dis = top.first;
+            
+            vis[node] = 1;
+            
+            for (auto child : G[node])
+            {
+                if (vis[child.first])
+                    continue;
+                
+                if (dist[child.first] < dis * child.second)
+                {
+                    dist[child.first] = dis * child.second;
+                    pq.push({dist[child.first], child.first});
+                }
+            }
+        }
+        
+        return dist[end_node];
     }
 };
