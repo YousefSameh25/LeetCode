@@ -20,7 +20,30 @@ public:
     }
     
     int lengthOfLIS(vector<int>& nums) {
-        memset (dp , -1 , sizeof dp);
-        return solve(0 , -1, nums);
+        //memset (dp , -1 , sizeof dp);
+        //return solve(0 , -1, nums);
+        
+        // Another solution 
+        
+        vector <int> ans;
+        ans.push_back(nums[0]);
+        for (int i = 1 ; i < nums.size(); i++)
+        {
+            if (nums[i] > ans.back())
+                ans.push_back(nums[i]);
+            else 
+            {
+                // It the current element smaller than my end so let's use it:
+                auto it = lower_bound (ans.begin(), ans.end(), nums[i]);
+                /*
+                    The lower bound will return the best suitable place 
+                    to put nums[i] in it.
+                    It also may override the end with smaller value.
+                */
+                *it = nums[i];
+            }
+        }
+        
+        return ans.size();
     }
 };
