@@ -17,10 +17,8 @@ public:
         
         for (int i = 0 ; i < s.size(); i++)
         {
-            sum += mp[s[i]];
-            mx = max(mx , sum);
-            if (sum < mp[s[i]])
-                sum = mp[s[i]];
+            int tmp = max(sum + mp[s[i]], mp[s[i]]);
+            sum = tmp;
             mx = max(mx , sum);
         }
         
