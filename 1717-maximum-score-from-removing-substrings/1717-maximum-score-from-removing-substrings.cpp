@@ -34,11 +34,12 @@ public:
     
     
     
-    int maximumGain(string s, int x, int y) {
+    int maximumGain(string s, int x, int y) 
+    {
+        if (x > y)
+            return calc(s, "ab", x) + calc(s, "ba", y);
         
-        string s1 = s;
-        int sum = calc(s1, "ab", x) + calc(s1, "ba", y);
-        
-        return max(sum, calc(s, "ba", y) + calc(s, "ab", x));
+        return calc(s, "ba", y) + calc(s, "ab", x);
     }
+    
 };
