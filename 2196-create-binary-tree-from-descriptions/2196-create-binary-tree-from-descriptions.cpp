@@ -14,12 +14,13 @@ public:
     TreeNode* createBinaryTree(vector<vector<int>>& des) {
         
         // Build an adj. list.
-        vector < vector < int > > G[100000 + 10];
         unordered_map < int , bool > isNotRoot;
+        unordered_map < int , TreeNode*> mp;
         for (auto it : des)
         {
             isNotRoot[it[1]] = 1;
-            G[it[0]].push_back({it[1], it[2]});
+            mp[it[0]] = new TreeNode(it[0]);
+            mp[it[1]] = new TreeNode(it[1]);
         }
             
         // We want to define the root.
@@ -33,35 +34,14 @@ public:
             } 
         }
         
-        TreeNode* root = new TreeNode(Root);
-        TreeNode* ret = root;
-        
-        // BFS
-        queue < TreeNode* > q;
-        q.push(root);
-        
-        
-        while(q.size())
+        for (auto it : des)
         {
-            auto it = q.front();
-            q.pop();
-            
-            for (auto it2 : G[it -> val])
-            {
-                int child = it2[0], left = it2[1];
-                if (left)
-                {
-                    it -> left = new TreeNode(child);
-                    q.push(it -> left);
-                }
-                else
-                {
-                    it -> right = new TreeNode(child);
-                    q.push(it -> right);
-                } 
-            }
+            if (it[2])
+                mp[it[0]] -> left = mp[it[1]];
+            else
+                mp[it[0]] -> right = mp[it[1]];
         }
         
-        return ret;
+        return mp[Root];
     }
 };
