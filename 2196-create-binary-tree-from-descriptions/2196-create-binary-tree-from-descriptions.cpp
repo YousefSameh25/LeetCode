@@ -15,7 +15,7 @@ public:
         
         // Build an adj. list.
         vector < vector < int > > G[100000 + 10];
-        map < int , bool > isNotRoot;
+        unordered_map < int , bool > isNotRoot;
         for (auto it : des)
         {
             isNotRoot[it[1]] = 1;
