@@ -19,8 +19,10 @@ public:
         for (auto it : des)
         {
             isNotRoot[it[1]] = 1;
-            mp[it[0]] = new TreeNode(it[0]);
-            mp[it[1]] = new TreeNode(it[1]);
+            if (!mp.count(it[0]))
+                mp[it[0]] = new TreeNode(it[0]);
+            if (!mp.count(it[1]))
+                mp[it[1]] = new TreeNode(it[1]);
         }
             
         // We want to define the root.
