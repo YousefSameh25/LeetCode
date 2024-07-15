@@ -29,7 +29,7 @@ public:
         int Root = -1;
         for (auto it : des)
         {
-            if (isNotRoot[it[0]] == 0)
+            if (!isNotRoot.count(it[0]))
             {
                 Root = it[0];
                 break;
