@@ -7,7 +7,8 @@ public:
             dis[i][i] = 0;
 
         for (int i = 0 ; i < original.size(); i++)
-            dis[original[i] - 'a'][changed[i] - 'a'] = 1LL * cost[i];
+            dis[original[i] - 'a'][changed[i] - 'a'] = 
+            min(dis[original[i] - 'a'][changed[i] - 'a'], 1LL * cost[i]);
 
         // Floyed Algorithm.
         for (int k = 0; k < 26; k++)
