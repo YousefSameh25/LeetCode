@@ -1,15 +1,15 @@
 class Solution {
 public:
     bool canBeEqual(vector<int>& target, vector<int>& arr) {
-        unordered_map < int , int > occu;
+        vector < int > occu(1001, 0);
         for ( int i = 0 ; i < arr.size(); i++)
         {
             occu[arr[i]]++;
             occu[target[i]]--;
         }
-        for (auto &it: occu)
+        for ( int i = 1 ; i <= 1000 ; i++)
         {
-            if (it.second)
+            if (occu[i])
                 return false;
         }
         return true;
