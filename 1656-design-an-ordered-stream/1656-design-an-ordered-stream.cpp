@@ -1,9 +1,10 @@
 class OrderedStream {
 public:
     vector < string > mp;
-    int expected = 1;
+    int expected;
     OrderedStream(int n) {
-        mp.resize(n + 1, "");
+        mp.assign(n + 1, "");
+        expected = 1;
     }
     
     vector<string> insert(int idKey, string value) {
