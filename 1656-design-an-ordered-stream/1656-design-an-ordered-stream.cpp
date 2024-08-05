@@ -1,15 +1,15 @@
 class OrderedStream {
 public:
-    map < int, string > mp;
+    vector < string > mp;
     int expected = 1;
     OrderedStream(int n) {
-        
+        mp.resize(n + 1, "");
     }
     
     vector<string> insert(int idKey, string value) {
         mp[idKey] = value;
         vector < string > ans;
-        while(mp.count(expected))
+        while(expected < mp.size() and mp[expected] != "")
             ans.push_back(mp[expected++]);
         return ans;
     }
