@@ -8,19 +8,14 @@ public:
         for (int i = 0 ; i < 26 ; i++)
             if (frq[i])
                 pq.push(frq[i]);
-        
-        vector < int > available (5, 8);
-        available[4] = 2;
 
-        int cost = 1, ans = 0;
+        int iteration = 1, ans = 0;
         while(pq.size())
         {
             auto it = pq.top();
             pq.pop();
-            ans += it * cost;
-            available[cost]--;
-            if (!available[cost])
-                cost++;
+            ans += it * ((iteration + 7) / 8);
+            iteration++;
         }
         return ans;
     }
