@@ -36,35 +36,35 @@ public:
     int regionsBySlashes(vector<string>& grid) 
     {
         int n = grid.size(), m = grid.back().size();
-        vector < vector < char > > matrix(n * 2, vector < char> (m * 2, '0'));
-        for (int i = 0, i2 = 0 ; i < n ; i++, i2 += 2)
+        vector < vector < char > > matrix(n * 3, vector < char> (m * 3, '0'));
+        for (int i = 0, i2 = 0 ; i < n ; i++, i2 += 3)
         {
-            for ( int j = 0, j2 = 0 ; j < m ; j++, j2 += 2)
+            for ( int j = 0, j2 = 0 ; j < m ; j++, j2 += 3)
             {
-                if (j - 1 >= 0 and grid[i][j] == grid[i][j - 1])
-                    continue;
                 if (grid[i][j] == '/')
                 {
-                    matrix[i2][j2 + 1] = '1';
-                    matrix[i2 + 1][j2] = '1';
+                    matrix[i2][j2 + 2] = '1';
+                    matrix[i2 + 1][j2 + 1] = '1';
+                    matrix[i2 + 2][j2] = '1';
                 }
                 else if (grid[i][j] == '\\')
                 {
                     matrix[i2][j2] = '1';
                     matrix[i2 + 1][j2 + 1] = '1';
+                    matrix[i2 + 2][j2 + 2] = '1';
                 }
             }
         }
 
         int compNum = 0;
-        for (int i = 0 ; i < n * 2 ; i++)
+        for (int i = 0 ; i < n * 3 ; i++)
         {
-            for (int j = 0; j < m * 2; j++)
+            for (int j = 0; j < m * 3; j++)
             {
                 cout << matrix[i][j];
                 if (vis[i][j] or matrix[i][j] == '1')
                     continue;
-                dfs(i, j, matrix, n * 2, m * 2);
+                dfs(i, j, matrix, n * 3, m * 3);
                 compNum++;
             }
             cout << endl;
