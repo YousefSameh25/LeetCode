@@ -17,7 +17,7 @@ public:
             if (suf[i] == s[i])
             {
                 t.push_back(s[i]);
-                while (i + 1 < s.size() and t.size() and t.back() < s[i + 1])
+                while (i + 1 < s.size() and t.size() and t.back() < suf[i + 1])
                     paper.push_back(t.back()), t.pop_back();
             }
             else
@@ -25,6 +25,7 @@ public:
         }
         while(t.size())
             paper.push_back(t.back()), t.pop_back();
+            
         return paper;
     }
 };
