@@ -2,7 +2,7 @@ class Solution {
 public:
     vector < vector < int >> ans;
     
-    void solve (int kthPos, int curIdx ,int sum ,vector< int > &path, vector < int > &nums)
+    void solve (int curIdx ,int sum ,vector< int > &path, vector < int > &nums)
     {
         if (sum == 0)
         {
@@ -20,7 +20,7 @@ public:
             if (i != curIdx and nums[i] == nums[i - 1])
                 continue;
             path.push_back(nums[i]);
-            solve(kthPos + 1 , i + 1, sum - nums[i], path, nums);
+            solve(i + 1, sum - nums[i], path, nums);
             path.pop_back();
         }
     }
@@ -28,7 +28,7 @@ public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector < int > path;
         sort(candidates.begin(), candidates.end());
-        solve(0, 0, target, path, candidates);
+        solve(0, target, path, candidates);
         return ans;
     }
 };
