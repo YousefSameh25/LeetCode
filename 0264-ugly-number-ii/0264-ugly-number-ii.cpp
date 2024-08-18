@@ -1,22 +1,27 @@
 class Solution {
 public:
-    vector < long long > v;
-    unordered_set < long long > dp;
-    void solve(long long num, int n)
-    {
-        if (num >= INT_MAX)
-            return;
-        if (dp.count(num))
-            return;
-        v.push_back(num);
-        solve(num * 2, n);
-        solve(num * 3, n);
-        solve(num * 5, n);
-        dp.insert(num);
-    }
     int nthUglyNumber(int n) {
-        solve(1LL, n);
-        sort(v.begin(), v.end());
-        return v[n - 1];
+        priority_queue < long long > pq;
+        pq.push(-1);
+        unordered_set < long long > vis;
+        vis.insert(1);
+        int child[3] = {2, 3, 5};
+        for (int i = 1; i <= n ; i++)
+        {
+            auto mn = -pq.top();
+            if (i == n)
+                return mn;
+            pq.pop();
+
+            for (int i = 0; i < 3 ; i++)
+            {
+                if (vis.count(mn * child[i]))
+                    continue;
+                vis.insert(mn * child[i]);
+                pq.push(-mn * child[i]);
+            }
+        }
+
+        return -pq.top();
     }
 };
