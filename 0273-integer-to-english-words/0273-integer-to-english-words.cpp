@@ -1,3 +1,10 @@
+auto init = []()
+{ 
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    return 0;
+}();
 class Solution {
 public:
     // Arrays to store words for numbers less than 10, 20, and 100
