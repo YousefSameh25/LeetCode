@@ -12,7 +12,7 @@ public:
             if(0<=nrow && nrow<grid1.size() && 0<=ncol && ncol<grid1[0].size() && grid2[nrow][ncol]==1 && !vis[nrow][ncol]){
                 if(grid1[nrow][ncol]==0){
                     flag=false;
-                    return;
+                   
                 }
                 dfs(vis,grid1,grid2,nrow,ncol,flag);
             }
