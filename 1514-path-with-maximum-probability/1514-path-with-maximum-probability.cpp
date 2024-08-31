@@ -33,7 +33,6 @@ public:
             int node = top.second;
             double dis = top.first;
             
-            
             for (auto child : G[node])
             {
                 if (dist[child.first] < dis * child.second)
