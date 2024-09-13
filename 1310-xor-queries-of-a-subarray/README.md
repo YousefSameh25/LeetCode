@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/xor-queries-of-a-subarray/">1310. XOR Queries of a Subarray</a></h2><h3>Medium</h3><hr><div><p>You are given an array <code>arr</code> of positive integers. You are also given the array <code>queries</code> where <code>queries[i] = [left<sub>i, </sub>right<sub>i</sub>]</code>.</p>
+<h2><a href="https://leetcode.com/problems/xor-queries-of-a-subarray">1310. XOR Queries of a Subarray</a></h2><h3>Medium</h3><hr><p>You are given an array <code>arr</code> of positive integers. You are also given the array <code>queries</code> where <code>queries[i] = [left<sub>i, </sub>right<sub>i</sub>]</code>.</p>
 
 <p>For each query <code>i</code> compute the <strong>XOR</strong> of elements from <code>left<sub>i</sub></code> to <code>right<sub>i</sub></code> (that is, <code>arr[left<sub>i</sub>] XOR arr[left<sub>i</sub> + 1] XOR ... XOR arr[right<sub>i</sub>]</code> ).</p>
 
@@ -7,7 +7,8 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> arr = [1,3,4,8], queries = [[0,1],[1,2],[0,3],[3,3]]
+<pre>
+<strong>Input:</strong> arr = [1,3,4,8], queries = [[0,1],[1,2],[0,3],[3,3]]
 <strong>Output:</strong> [2,7,14,8] 
 <strong>Explanation:</strong> 
 The binary representation of the elements in the array are:
@@ -24,7 +25,8 @@ The XOR values for queries are:
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> arr = [4,8,2,10], queries = [[2,3],[1,3],[0,0],[0,3]]
+<pre>
+<strong>Input:</strong> arr = [4,8,2,10], queries = [[2,3],[1,3],[0,0],[0,3]]
 <strong>Output:</strong> [8,0,4,4]
 </pre>
 
@@ -37,4 +39,3 @@ The XOR values for queries are:
 	<li><code>queries[i].length == 2</code></li>
 	<li><code>0 &lt;= left<sub>i</sub> &lt;= right<sub>i</sub> &lt; arr.length</code></li>
 </ul>
-</div>
