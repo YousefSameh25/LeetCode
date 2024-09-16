@@ -8,18 +8,14 @@ public:
             int time = stoi(timePoints[i].substr(0, 2)) * 60;
             time += stoi(timePoints[i].substr(3, 2));
             if (time == 0)
-                time = 24 * 60;
+                time = 60 * 24;
             times.push_back(time);
         }
-        int ans = 1e9;
-        for (int i = 0 ; i < times.size(); i++)
-        {
-            for (int j = i + 1; j < times.size(); j++)
-            {
-                ans = min(ans, abs(times[i] - times[j]));
-                ans = min(ans, 24 * 60 - abs(times[i] - times[j]));
-            }
-        }
+        sort(times.begin(), times.end());
+        int ans = 24 * 60 - (times.back() - times[0]);
+        for (int i = 1 ; i < times.size(); i++)
+            ans = min(ans, abs(times[i] - times[i - 1]));
+        
         return ans;
     }
 };
