@@ -3,8 +3,10 @@ class Node
 public:
     int val;
     Node* next;
+    Node* prev;
     Node(int x): val(x) {
         next = nullptr;
+        prev = nullptr;
     }
 };
 class CustomStack {
@@ -31,6 +33,7 @@ public:
         {
             Node *node = new Node(x);
             node -> next = Head;
+            Head -> prev = node;
             Head = node;
         }
         Length++;
@@ -49,15 +52,10 @@ public:
     
     void increment(int k, int val) {
         int Len = min(k, Length);
-
-        int idx = Length - Len;
-        Node *st = Head;
-        while(idx--)
-            st = st -> next;
-
-        while(st != nullptr) {
+        Node* st = Tail;
+        while(Len-- and st != nullptr) {
             st -> val += val;
-            st = st -> next;
+            st = st -> prev;
         }
     }
 };
