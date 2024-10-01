@@ -9,15 +9,17 @@ public:
         return (temp + k) % k;
     }
     bool canArrange(vector<int>& arr, int k) {
-        multiset < int > mst;
+        unordered_map < int, int > mp;
         for (int i = 0 ; i < arr.size(); i++)
         {
             int need = Add(k - Add(arr[i], k, k), k , k);
-            if (mst.find(need) == mst.end())
-                mst.insert(Add(arr[i], k, k));
+            if (!mp.count(need) or mp[need] == 0)
+                mp[Add(arr[i], k, k)]++;
             else
-                 mst.erase(mst.find(need));
+                mp[need]--;
         }
-        return mst.size() == 0;
+        int sum = 0;
+        for (auto &it : mp) sum += it.second;
+        return sum == 0;
     }
 };
