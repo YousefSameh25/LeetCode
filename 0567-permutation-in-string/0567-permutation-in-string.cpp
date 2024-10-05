@@ -37,7 +37,6 @@ public:
             } 
             else
             {
-                vector < int > l = frq[i - s1.size()];
                 vector < int > temp(26, 0);
                 for (int j = 0 ; j < 26 ; j++)
                     r[j] -= frq[i - s1.size()][j];
