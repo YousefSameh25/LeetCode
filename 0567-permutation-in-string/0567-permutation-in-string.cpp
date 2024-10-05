@@ -40,10 +40,10 @@ public:
                 vector < int > l = frq[i - s1.size()];
                 vector < int > temp(26, 0);
                 for (int j = 0 ; j < 26 ; j++)
-                    temp[j] += r[j] - l[j];
+                    r[j] -= frq[i - s1.size()][j];
                 for ( int j = 0 ; j < 26; j++)
                 {
-                    if (temp[j] < tar[j])
+                    if (r[j] < tar[j])
                     {
                         acc = 0;
                         break;
