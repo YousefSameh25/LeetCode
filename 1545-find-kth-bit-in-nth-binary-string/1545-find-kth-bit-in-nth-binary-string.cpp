@@ -5,11 +5,10 @@ public:
         n--;
         while(n-- and k > s.size())
         {
-            string s2 = s;
-            reverse(s2.begin(), s2.end());
+            int sz = s.size();
             s.push_back('1');
-            for (auto it : s2)
-                s.push_back(('1' - it) + '0');
+            for (int i = sz - 1 ; i >= 0 ; i--)
+                s.push_back(('1' - s[i]) + '0');
         }
         return s[k - 1];
     }
