@@ -3,7 +3,7 @@ public:
     char findKthBit(int n, int k) {
         string s = "0";
         n--;
-        while(n--)
+        while(n-- and k > s.size())
         {
             string s2 = s;
             reverse(s2.begin(), s2.end());
