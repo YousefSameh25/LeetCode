@@ -1,59 +1,50 @@
 class Solution {
+private: 
+    int sum(int i, int j, int x, int y, vector<vector<int>>& mat)
+    {
+        int s = mat[x][y];
+
+        if (i - 1 < mat.size())
+            s -= mat[i - 1][y];
+
+        if (j - 1 < mat.back().size())
+            s -= mat[x][j - 1];
+
+        if (i - 1 < mat.size() and j - 1 < mat.back().size())
+            s += mat[i - 1][j - 1];
+
+        return s;
+    }
 public:
-    int countSquares(vector<vector<int>>& matrix) {
-        
-        int n = matrix.size(), m = matrix.back().size();
-        
-        for (int i = 0 ; i < n; i++)
+    int countSquares(vector<vector<int>>& mat) {
+        int n = mat.size(), m = mat.back().size();
+        for (int i = 0 ; i < n ; i++)
         {
-            for (int j = 1 ; j < m ; j++)
-            {
-                matrix[i][j] += matrix[i][j - 1];
-            }
+            for (int j = 1; j < m ; j++)
+                mat[i][j] += mat[i][j - 1];
         }
-        
-        for (int j = 0; j < m ; j++)
+
+        for (int j = 0 ; j < m ; j++)
         {
-            for (int i = 1; i < n; i++)
-            {
-                matrix[i][j] += matrix[i - 1][j];
-            }
+            for (int i = 1; i < n ; i++)
+                mat[i][j] += mat[i - 1][j];
         }
-        
-        int L = min(n , m);
-        
+
         int ans = 0;
-        
-        for (int i = 0; i < n ; i++)
+        for (int i = 0 ; i < n ; i++)
         {
-            for (int j = 0 ; j < m ; j++)
+            for (int j = 0; j < m ; j++)
             {
-                // Try all square side lengths
-                for (int l = 1; l <= L; l++)
+                // Try all lengths
+                int x = i, y = j;
+                while(x < n and y < m)
                 {
-                    if (i + l - 1 < n and j + l - 1 < m)
-                    {
-                        int BR = matrix[i + l - 1][j + l - 1];
-                        
-                        int TL = 0;
-                        if (i - 1 >= 0 and j - 1 >= 0)
-                            TL = matrix[i - 1][j - 1];
-                        
-                        int TR = 0;
-                        if (i - 1 >= 0)
-                            TR = matrix[i - 1][j + l - 1];
-                        
-                        int BL = 0;
-                        if (j - 1 >= 0)
-                            BL = matrix[i + l - 1][j - 1];
-                        
-                        int squareSum = BR - TR - BL + TL;
-                        
-                        ans += squareSum == l * l;
-                    }
+                    int a = (x - i + 1) * (y - j + 1);
+                    ans += sum(i, j, x, y, mat) == a;
+                    x++, y++;
                 }
             }
-        } 
-        return ans;   
+        }
+        return ans;
     }
 };
