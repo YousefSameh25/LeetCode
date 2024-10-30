@@ -1,62 +1,39 @@
 class Solution {
 public:
-    int dp1[1000 + 10][1000 + 10] ,dp2[1000 + 10][1000 + 10];
-    
-	int LIS(vector<int> &nums, int i, int prev, int previ)
+    vector < vector < int >> dp;
+    int R (int i, int prvi, vector<int>& nums)
     {
-	    if(i < 0)
+        if (i >= nums.size())
             return 0;
-            
-        int &ret = dp1[i][previ];
-        
-	    if(~ret) 
-            return ret;
-	    
-	     ret = 0;
-        
-        if (nums[i] < prev)
-            ret = LIS(nums , i - 1 , nums[i] , i) + 1;
-        
-        ret = max (ret , LIS (nums , i - 1 , prev , previ));
-        
-	    return ret;
-	}
-	
-
-	int LDS(vector<int> &nums, int i, int prev, int previ)
+        int &ret = dp[i][prvi];
+        if (~ret)
+            return ret; 
+        ret = R(i + 1, prvi, nums);
+        if (nums[prvi] > nums[i])
+            ret = max(ret, 1 + R(i + 1, i, nums));
+        return ret;
+    }
+    int L (int i, int prvi, vector<int>& nums)
     {
-	    if(i >= nums.size()) 
+        if (i < 0)
             return 0;
-        
-	     int &ret = dp1[i][previ];
-        
-	    if(~ret) 
-            return ret;
-	    
-	    ret = 0;
-        
-        if (nums[i] < prev)
-            ret = LDS(nums , i + 1 , nums[i], i) + 1;
+        int &ret = dp[i][prvi];
+        if (~ret)
+            return ret; 
+        ret = L(i - 1, prvi, nums);
+        if (nums[prvi] > nums[i])
+            ret = max(ret, 1 + L(i - 1, i, nums));
+        return ret;
+    }
 
-        ret = max (ret , LDS (nums, i + 1 , prev , previ ));
-	    
-	    return ret;
-	}
-    
-    int minimumMountainRemovals(vector<int>& nums) 
-    {
-        memset(dp1 , -1 , sizeof(dp1));
-	    memset(dp2 , -1 , sizeof(dp2));
-	    int mx = 0;
-        
-	    for(int i = 0 ; i < nums.size() ; i++)
-        { 
-            int left = LIS (nums , i - 1 , nums[i] , i);
-            int right = LDS (nums , i + 1 , nums[i] , i);
-            if (!left or !right)
-                continue;
-	        mx = max(mx , left + right + 1);
-	    }
-	    return nums.size() - mx;
+    int minimumMountainRemovals(vector<int>& nums) {
+        dp.resize(nums.size(), vector < int > (nums.size(), -1));
+        int mx = 0;
+        for (int i = 1 ; i < nums.size() - 1; i++)
+        {
+            if(R(i + 1, i, nums) and L(i - 1, i, nums))
+                mx = max(mx, R(i + 1, i, nums) + L(i - 1, i, nums) + 1);
+        }
+        return nums.size() - mx;
     }
 };
