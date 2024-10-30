@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/">1671. Minimum Number of Removals to Make Mountain Array</a></h2><h3>Hard</h3><hr><div><p>You may recall that an array <code>arr</code> is a <strong>mountain array</strong> if and only if:</p>
+<h2><a href="https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array">1671. Minimum Number of Removals to Make Mountain Array</a></h2><h3>Hard</h3><hr><p>You may recall that an array <code>arr</code> is a <strong>mountain array</strong> if and only if:</p>
 
 <ul>
 	<li><code>arr.length &gt;= 3</code></li>
@@ -15,14 +15,16 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> nums = [1,3,1]
+<pre>
+<strong>Input:</strong> nums = [1,3,1]
 <strong>Output:</strong> 0
 <strong>Explanation:</strong> The array itself is a mountain array so we do not need to remove any elements.
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> nums = [2,1,1,5,6,2,3,1]
+<pre>
+<strong>Input:</strong> nums = [2,1,1,5,6,2,3,1]
 <strong>Output:</strong> 3
 <strong>Explanation:</strong> One solution is to remove the elements at indices 0, 1, and 5, making the array nums = [1,5,6,3,1].
 </pre>
@@ -35,4 +37,3 @@
 	<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 	<li>It is guaranteed that you can make a mountain array out of <code>nums</code>.</li>
 </ul>
-</div>
