@@ -2,7 +2,7 @@ class Solution {
 public:
     bool isCircularSentence(string sentence) {
         bool ok = 1;
-        for (int i = 0 ; i < sentence.size() ;i++)
+        for (int i = 0 ; i < sentence.size() and ok ;i++)
         {
             if(sentence[i] == ' ')
                 ok &= (sentence[i - 1] == sentence[i + 1]);
