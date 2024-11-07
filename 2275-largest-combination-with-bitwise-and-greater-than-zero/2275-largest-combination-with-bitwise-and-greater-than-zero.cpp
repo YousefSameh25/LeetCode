@@ -5,7 +5,7 @@ public:
         vector < int > bits(24, 0);
         for (int i = 0 ; i < candidates.size(); i++)
         {
-            for (int b = 0; b < 24; b++)
+            for (int b = 0; b < log2(candidates[i]) + 1; b++)
             {
                 if (candidates[i] & (1 << b))
                     bits[b]++;
