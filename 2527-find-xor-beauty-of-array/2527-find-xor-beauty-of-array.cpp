@@ -8,11 +8,10 @@ public:
             suf[i] |= nums[i];
         }
 
-        int pre = 0, zor = 0;
+        int zor = 0;
         for (int i = 0 ; i < n; i++)
         {
-            zor ^= ((nums[i] | suf[i + 1]) & nums[i]);
-            pre |= nums[i];
+            zor ^= (nums[i] & suf[i]);
         }
         return zor;
     }
