@@ -24,7 +24,7 @@ public:
         {
             if (i == 0)
             {
-                auto it = upper_bound(pri.begin(), pri.end(), nums[i]) - pri.begin();
+                auto it = upper_bound(pri.begin(), pri.end(), nums[i] - 1) - pri.begin();
                 it--;
                 if (it >= 0 and it < pri.size())
                     nums[i] -= pri[it];
@@ -36,8 +36,6 @@ public:
                 if (it >= 0 and it < pri.size())
                     nums[i] -= pri[it];
             }
-            if (!nums[i])
-                return 0;
         }
         for (int i = 1 ; i < nums.size(); i++)
         {
