@@ -2,7 +2,7 @@ class Solution {
 public:
     bool primeSubOperation(vector<int>& nums) 
     {
-        vector < int > primes(1000 + 1, 1);
+        vector < bool > primes(1000 + 1, 1);
         for ( int i = 2; i <= 1000; i++)
         {
             if (!primes[i])
@@ -22,21 +22,12 @@ public:
 
         for (int i = 0; i < nums.size(); i++)
         {
-            if (i == 0)
-            {
-                auto it = upper_bound(pri.begin(), pri.end(), nums[i] - 1) - pri.begin();
-                it--;
-                if (it >= 0 and it < pri.size())
-                    nums[i] -= pri[it];
-            }
-            else
-            {
-                auto it = upper_bound(pri.begin(), pri.end(), nums[i] - nums[i - 1] - 1) - pri.begin();
-                it--;
-                if (it >= 0 and it < pri.size())
-                    nums[i] -= pri[it];
-            }
+            auto it = upper_bound(pri.begin(), pri.end(), nums[i] - 1 - (i? nums[i - 1] : 0)) - pri.begin();
+            it--;
+            if (it >= 0 and it < pri.size())
+                nums[i] -= pri[it];
         }
+        
         for (int i = 1 ; i < nums.size(); i++)
         {
             if (nums[i] <= nums[i - 1])
