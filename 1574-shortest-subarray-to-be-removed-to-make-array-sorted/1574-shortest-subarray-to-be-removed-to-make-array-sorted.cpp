@@ -2,8 +2,6 @@ class Solution {
 public:
     bool remove (int len, vector<int>& arr, vector<bool>& pre_sorted, vector<bool>& suf_sorted)
     {
-        if (len == 0)
-            return 1;
         len--;
         // Try to remove sub array with len size.
         for (int i = 0 ; i + len < arr.size(); i++)
@@ -31,6 +29,8 @@ public:
     }
     int findLengthOfShortestSubarray(vector<int>& arr) 
     {
+        if (is_sorted(arr.begin(), arr.end()))
+            return 0;
         vector < bool > pre_sorted(arr.size()), suf_sorted(arr.size());
         bool sorted = 1;
         for (int i = 0 ; i < arr.size(); i++)
@@ -48,7 +48,7 @@ public:
             suf_sorted[i] = sorted; 
         }
 
-        int l = 0, r = arr.size() - 1, ans = 0;
+        int l = 1, r = arr.size() - 1, ans = 0;
         while(l <= r)
         {
             int mid = (l + r) >> 1;
