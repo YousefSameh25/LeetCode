@@ -22,23 +22,27 @@ public:
                 {
                     // right
                     int tempi = i, tempj = j + 1;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2)
-                        grid[tempi][tempj++] = -1;
+                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                        and grid[tempi][tempj] != 1)
+                        grid[tempi][tempj] = 3, tempj++;
 
                     // left
                     tempi = i, tempj = j - 1;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2)
-                        grid[tempi][tempj--] = -1;
+                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                        and grid[tempi][tempj] != 1)
+                        grid[tempi][tempj] = 3, tempj--;
 
                     // up
                     tempi = i - 1, tempj = j;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2)
-                        grid[tempi--][tempj] = -1;
+                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                        and grid[tempi][tempj] != 1)
+                        grid[tempi][tempj] = 3, tempi--;
 
                     // down
                     tempi = i + 1, tempj = j;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2)
-                        grid[tempi++][tempj] = -1;
+                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                    and grid[tempi][tempj] != 1)
+                        grid[tempi][tempj] = 3, tempi++;
                 }
             }
         }
@@ -48,6 +52,7 @@ public:
             for (int j = 0; j < n ; j++)
             {
                 ans += grid[i][j] == 0;
+                cout << grid[i][j] << " ";
             }
             cout << endl;
         }
