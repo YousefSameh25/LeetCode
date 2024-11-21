@@ -14,36 +14,34 @@ public:
         for (auto it : walls)
             grid[it[0]][it[1]] = 2; 
 
-        for (int i = 0 ; i < m ; i++)
+        for (auto it : guards)
         {
-            for (int j = 0 ; j < n ; j++)
+            int i = it[0], j = it[1];
+            if (grid[i][j] == 1)
             {
-                if (grid[i][j] == 1)
-                {
-                    // right
-                    int tempi = i, tempj = j + 1;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
-                        and grid[tempi][tempj] != 1)
-                        grid[tempi][tempj] = 3, tempj++;
-
-                    // left
-                    tempi = i, tempj = j - 1;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
-                        and grid[tempi][tempj] != 1)
-                        grid[tempi][tempj] = 3, tempj--;
-
-                    // up
-                    tempi = i - 1, tempj = j;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
-                        and grid[tempi][tempj] != 1)
-                        grid[tempi][tempj] = 3, tempi--;
-
-                    // down
-                    tempi = i + 1, tempj = j;
-                    while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                // right
+                int tempi = i, tempj = j + 1;
+                while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
                     and grid[tempi][tempj] != 1)
-                        grid[tempi][tempj] = 3, tempi++;
-                }
+                    grid[tempi][tempj] = 3, tempj++;
+
+                // left
+                tempi = i, tempj = j - 1;
+                while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                    and grid[tempi][tempj] != 1)
+                    grid[tempi][tempj] = 3, tempj--;
+
+                // up
+                tempi = i - 1, tempj = j;
+                while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                    and grid[tempi][tempj] != 1)
+                    grid[tempi][tempj] = 3, tempi--;
+
+                // down
+                tempi = i + 1, tempj = j;
+                while(valid(tempi, tempj, m, n) and grid[tempi][tempj] != 2
+                and grid[tempi][tempj] != 1)
+                    grid[tempi][tempj] = 3, tempi++;
             }
         }
         int ans = 0;
@@ -52,9 +50,7 @@ public:
             for (int j = 0; j < n ; j++)
             {
                 ans += grid[i][j] == 0;
-                cout << grid[i][j] << " ";
             }
-            cout << endl;
         }
         return ans;
     }
