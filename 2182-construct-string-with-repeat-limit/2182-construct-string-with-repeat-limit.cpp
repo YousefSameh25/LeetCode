@@ -7,18 +7,26 @@ public:
         }
 
         string result;
-        int currentCharIndex = 25; 
-        while (currentCharIndex >= 0) {
+        int currentCharIndex = 25, cnt = 0; 
+        while (currentCharIndex >= 0) 
+        {
             if (freq[currentCharIndex] == 0) {
                 currentCharIndex--;
                 continue;
             }
 
-            int use = min(freq[currentCharIndex], repeatLimit);
-            result.append(use, 'a' + currentCharIndex);
-            freq[currentCharIndex] -= use;
+            
+            result.push_back('a' + currentCharIndex);
+            freq[currentCharIndex]--, cnt++;
 
-            if (freq[currentCharIndex] > 0) {  // Need to add a smaller character
+            if (freq[currentCharIndex] == 0)
+            {
+                cnt = 0;
+                continue;
+            }
+
+            if (cnt == repeatLimit)
+            {
                 int smallerCharIndex = currentCharIndex - 1;
                 while (smallerCharIndex >= 0 && freq[smallerCharIndex] == 0) {
                     smallerCharIndex--;
@@ -28,6 +36,7 @@ public:
                 }
                 result.push_back('a' + smallerCharIndex);
                 freq[smallerCharIndex]--;
+                cnt = 0;
             }
         }
 
