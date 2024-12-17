@@ -1,51 +1,36 @@
-class Solution 
-{
+class Solution {
 public:
-    string repeatLimitedString(string s, int repeatLimit) 
-    {
-        vector < int > cnt(26, 0);
-        for (auto &it : s)
-            cnt[it - 'a']++;
-
-        priority_queue < pair < char, pair < int , int > >> pq;
-        for ( int i = 0 ; i < 26; i++)
-        {
-            if (cnt[i])
-                pq.push({i + 'a', {cnt[i], repeatLimit}});
+    string repeatLimitedString(string s, int repeatLimit) {
+        vector<int> freq(26, 0);
+        for (char ch : s) {
+            freq[ch - 'a']++;
         }
 
-        string ans;
-        while(pq.size())
-        {
-            auto it = pq.top();
-            pq.pop();
-            if (it.second.second)
-            {
-                it.second.second--;
-                ans.push_back(it.first);
-                it.second.first--;
-                if (it.second.first)
-                    pq.push(it);
+        string result;
+        int currentCharIndex = 25; 
+        while (currentCharIndex >= 0) {
+            if (freq[currentCharIndex] == 0) {
+                currentCharIndex--;
+                continue;
             }
-            else
-            {
-                if (!pq.size())
+
+            int use = min(freq[currentCharIndex], repeatLimit);
+            result.append(use, 'a' + currentCharIndex);
+            freq[currentCharIndex] -= use;
+
+            if (freq[currentCharIndex] > 0) {  // Need to add a smaller character
+                int smallerCharIndex = currentCharIndex - 1;
+                while (smallerCharIndex >= 0 && freq[smallerCharIndex] == 0) {
+                    smallerCharIndex--;
+                }
+                if (smallerCharIndex < 0) {
                     break;
-
-                auto it2 = pq.top();
-                pq.pop();
-
-                it2.second.first--;
-                ans.push_back(it2.first);
-
-                if (it2.second.first)
-                    pq.push(it2);
-
-                it.second.second = repeatLimit;
-
-                pq.push(it);  
+                }
+                result.push_back('a' + smallerCharIndex);
+                freq[smallerCharIndex]--;
             }
         }
-        return ans;
+
+        return result;
     }
 };
