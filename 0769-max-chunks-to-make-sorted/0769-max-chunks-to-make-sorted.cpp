@@ -17,7 +17,6 @@ public:
             }
             else
             {
-                L = min(L, ranges[i].first);
                 R = max(R, ranges[i].second);
             }
         }
