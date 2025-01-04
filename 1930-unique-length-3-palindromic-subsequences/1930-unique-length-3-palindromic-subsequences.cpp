@@ -34,7 +34,6 @@ public:
             for (int c = 0; c < 26; c++)
                 dis += pre[r - 1 + 1][c] - pre[l + 1 + 1 - 1][c] > 0;
 
-            cout << dis << endl;
             ans += dis;
         }
         return ans;
