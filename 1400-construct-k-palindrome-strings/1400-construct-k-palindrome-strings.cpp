@@ -20,9 +20,6 @@ public:
 
         if (k <= 0)
             return true;
-
-        if (two >= k)
-            return true;
         
         return two * 2 >= k;
     }
