@@ -37,6 +37,6 @@ public:
             return false;
         }
 
-        return true;
+        return unlocked.size() % 2 == 0;
     }
 };
