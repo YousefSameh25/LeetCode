@@ -2,7 +2,7 @@ class Solution {
 public:
     int minimumLength(string s) 
     {
-        vector < int > v(26, 0);
+        vector < short > v(26, 0);
         int ans = 0;    
         for (int i = 0 ; i < s.size(); i++)
         {
@@ -13,7 +13,6 @@ public:
                 ans -= 2;
             }
         }
-         
         return ans;
     }
 };
