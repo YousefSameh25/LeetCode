@@ -6,7 +6,7 @@ public:
         int ans = 0;    
         for (int i = 0 ; i < s.size(); i++)
         {
-            v[s[i] - 'a']++, ans++;
+            v[s[i] - 'a'] += 1, ans += 1;
             if (v[s[i] - 'a'] == 3)
             {
                 v[s[i] - 'a'] -= 2;
