@@ -2,7 +2,7 @@ class Solution {
 public:
     int firstCompleteIndex(vector<int>& arr, vector<vector<int>>& mat) {
         int n = mat.size(), m = mat.back().size();
-        unordered_map < int , stack < pair < int , int >>> mp;
+        vector < stack < pair < int , int > > > mp((n + 1) * (m + 1));
         for (int i = 0 ; i < n ; i++)
             for (int j = 0 ; j < m ; j++)
                 mp[mat[i][j]].push({i , j});
