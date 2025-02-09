@@ -1,14 +1,15 @@
 class Solution {
 public:
     long long countBadPairs(vector<int>& nums) {
-        set < int > st;
+        multiset < int > st;
+        map <int , int > mp;
         long long ans = 0;
         for (int i = 0 ; i < nums.size(); i++)
         {
             nums[i] = i - nums[i];
-            st.erase(nums[i]);
-            ans += 1LL * st.size();
+            ans += 1LL * (st.size() - mp[nums[i]]);
             st.insert(nums[i]);
+            mp[nums[i]]++;
         }
         return ans;
     }
