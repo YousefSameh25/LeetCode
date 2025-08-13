@@ -2,18 +2,19 @@ class Solution {
 public:
     bool isPowerOfThree(int n) 
     {   
-        int l = 0, r = 20;
+        int l = 0, r = 19, ans = -INT_MAX;
         while(l <= r)
         {
             int mid = (l + r) >> 1;
-            long long ans = pow(3,mid);
-            if (ans == n)
-                return true;
-            if (ans > n)
+            long long temp = pow(3, mid);
+            if (temp > n)
                 r = mid - 1;
             else
+            {
+                ans = temp;
                 l = mid + 1;
+            }
         }
-        return false;
+        return ans == n;
     }
 };
