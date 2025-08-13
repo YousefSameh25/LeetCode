@@ -6,7 +6,7 @@ public:
         while(l <= r)
         {
             int mid = (l + r) >> 1;
-            long long ans = pow(3, mid);
+            long long ans = pow(3,mid);
             if (ans == n)
                 return true;
             if (ans > n)
