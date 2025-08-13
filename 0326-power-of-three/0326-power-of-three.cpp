@@ -1,9 +1,14 @@
 class Solution {
 public:
-    bool isPowerOfThree(int n) {
-        long long val = 1;
-        while(val < n and val * 3 < INT_MAX)
-            val *= 3;
-        return (val == n);
+    bool isPowerOfThree(int n) 
+    {   
+        if (n == 0)
+            return false;
+
+        while(n % 3 == 0)
+        {
+            n /= 3;
+        }
+        return n == 1;
     }
 };
